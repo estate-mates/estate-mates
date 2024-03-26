@@ -6,7 +6,8 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "types": [
-      "kakao.maps.d.ts"
+      "kakao.maps.d.ts",
+      "@emotion/react/types/css-prop"
     ],
 
     /* Bundler mode */

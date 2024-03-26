@@ -1,8 +1,8 @@
+/** @jsxImportSource @emotion/react */
 function TheNav() {
   return (
-    <nav>
+    <nav css={{ position: 'fixed', backgroundColor: 'hotpink', height: '50px', width: '100%', zIndex: 1000 }}>
       <strong>estate-mates</strong>
-      <hr />
     </nav>
   )
 }

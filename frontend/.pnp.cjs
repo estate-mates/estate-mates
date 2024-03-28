@@ -28,6 +28,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@emotion/react", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:11.11.4"],\
           ["@tanstack/react-query", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:5.28.8"],\
+          ["@tanstack/react-query-devtools", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:5.28.9"],\
           ["@types/react", "npm:18.2.67"],\
           ["@types/react-dom", "npm:18.2.22"],\
           ["@typescript-eslint/eslint-plugin", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:7.3.1"],\
@@ -1118,6 +1119,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@tanstack/query-devtools", [\
+      ["npm:5.28.6", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@tanstack-query-devtools-npm-5.28.6-4a6cef1872-10c0.zip/node_modules/@tanstack/query-devtools/",\
+        "packageDependencies": [\
+          ["@tanstack/query-devtools", "npm:5.28.6"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@tanstack/react-query", [\
       ["npm:5.28.8", {\
         "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@tanstack-react-query-npm-5.28.8-6261c4c275-10c0.zip/node_modules/@tanstack/react-query/",\
@@ -1136,6 +1146,33 @@ const RAW_RUNTIME_STATE =
         ],\
         "packagePeers": [\
           "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@tanstack/react-query-devtools", [\
+      ["npm:5.28.9", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@tanstack-react-query-devtools-npm-5.28.9-0140ca27b3-10c0.zip/node_modules/@tanstack/react-query-devtools/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query-devtools", "npm:5.28.9"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:5.28.9", {\
+        "packageLocation": "./.yarn/__virtual__/@tanstack-react-query-devtools-virtual-92e1722241/4/AppData/Local/Yarn/Berry/cache/@tanstack-react-query-devtools-npm-5.28.9-0140ca27b3-10c0.zip/node_modules/@tanstack/react-query-devtools/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query-devtools", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:5.28.9"],\
+          ["@tanstack/query-devtools", "npm:5.28.6"],\
+          ["@tanstack/react-query", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:5.28.8"],\
+          ["@types/react", "npm:18.2.67"],\
+          ["@types/tanstack__react-query", null],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@tanstack/react-query",\
+          "@types/react",\
+          "@types/tanstack__react-query",\
           "react"\
         ],\
         "linkType": "HARD"\
@@ -2250,6 +2287,7 @@ const RAW_RUNTIME_STATE =
           ["estate-mates", "workspace:."],\
           ["@emotion/react", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:11.11.4"],\
           ["@tanstack/react-query", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:5.28.8"],\
+          ["@tanstack/react-query-devtools", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:5.28.9"],\
           ["@types/react", "npm:18.2.67"],\
           ["@types/react-dom", "npm:18.2.22"],\
           ["@typescript-eslint/eslint-plugin", "virtual:3b72b323fa0716d586810f007a845fd4f66058f26e23285b42544dc18ba78b2c6b5dacef232a57bf0282869d622148f18138fde35ac441740af6e33859cb3bff#npm:7.3.1"],\

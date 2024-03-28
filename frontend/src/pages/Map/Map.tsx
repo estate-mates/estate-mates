@@ -1,25 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSetLocation } from "../../hooks/useSetLocation";
+import { initializeMap, searchAndAddMarker } from "../../utils/mapUtils";
+import { useMapListQuery } from "../../hooks/queries/useMapListQuery";
 
 function Map() {
   const location = useSetLocation();
+  const [_centerAddress, setCenterAddress] = useState("");
+  const { data, isLoading } = useMapListQuery({ sggNm: "중구" }).mapListQuery;
   useEffect(() => {
-    const container = document.getElementById("map") as HTMLElement;
-    const options = {
-      center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-      level: 3,
-    };
-    const map = new kakao.maps.Map(container, options);
-    if (typeof location === "object" && "lat" in location && "lon" in location) {
-      const locPosition = new kakao.maps.LatLng(location.lat, location.lon);
-      map.setCenter(locPosition);
-    } else {
-      // 위치 정보를 가져오지 못했을 때 기본 위치를 설정합니다.
-      const locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
-			map.setCenter(locPosition);
+    if (!isLoading && data) {
+      const container = document.getElementById("map") as HTMLElement;
+      const options = {
+        center: new window.kakao.maps.LatLng(37.566826, 126.9786567),
+        level: 4,
+      };
+      const map = new kakao.maps.Map(container, options);
+      initializeMap(map, location, setCenterAddress);
+      if (Array.isArray(data.data)) {
+        data.data.forEach((item) => {
+          const address = `${item.sggNm} ${item.bjdongNm} ${item.bldgNm}`;
+          return searchAndAddMarker(map, address);
+        });
+      } else {
+        console.error("데이터 없음");
+      }
     }
-  }, [location]);
-  return <div id="map" style={{ width: "100%", height: "100%" }}></div>;
+  }, [isLoading, data, location]);
+  return (
+    <div style={{ width: "100%", height: "100%" }}>
+      <div id="map" style={{ width: "100%", height: "100%" }}></div>
+      {/* <div className="hAddr" style={{ position: "fixed", top: 0, zIndex: 10 }}>
+        <span id="centerAddr"></span>
+      </div> */}
+    </div>
+  );
 }
 
 export default Map;

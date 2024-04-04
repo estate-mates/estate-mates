@@ -5,7 +5,7 @@ const BASE_URL = import.meta.env.BASE_URL;
 export const instance = () => {
   const instance = axios.create({
     baseURL: BASE_URL + 'api/v1/',
-    timeout: 500000000000000,
+    timeout: 5000,
   });
 
   // request interceptor

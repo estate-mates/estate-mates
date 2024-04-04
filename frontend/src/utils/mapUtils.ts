@@ -1,67 +1,49 @@
 export const initializeMap = (
   map: kakao.maps.Map,
-  location: { lat: number; lng: number },
   setCenterAddress: React.Dispatch<React.SetStateAction<string>>
 ) => {
-  const locPosition = new kakao.maps.LatLng(location.lat, location.lng);
-  map.setCenter(locPosition);
   const geocoder = new kakao.maps.services.Geocoder();
-  searchDetailAddrFromCoords(map.getCenter(), displayCenterInfo);
-
-  kakao.maps.event.addListener(map, "idle", function () {
-    searchDetailAddrFromCoords(map.getCenter(), displayCenterInfo);
-  });
-
-  function searchDetailAddrFromCoords(
+  const searchDetailAddrFromCoords = (
     coords: kakao.maps.LatLng,
     callback: (result: ILocation[], status: kakao.maps.services.Status) => void
-  ) {
+  ) => {
     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-  }
-
-  function displayCenterInfo(
+  };
+  const displayCenterInfo = (
     result: ILocation[],
     status: kakao.maps.services.Status
-  ) {
+  ) => {
     if (status === kakao.maps.services.Status.OK) {
-      // const infoDiv = document.getElementById("centerAddr") as HTMLElement;
-      // infoDiv.innerHTML = result[0].address.address_name;
-      setCenterAddress(result[0].address.address_name.split(" ")[1]);
+      const infoDiv = document.getElementById("centerAddr") as HTMLElement;
+      infoDiv.innerHTML = result[0].address.address_name;
+      setCenterAddress(result[0].address.address_name.split(" ")[2]);
     }
-  }
+  };
+  searchDetailAddrFromCoords(map.getCenter(), displayCenterInfo);
+  kakao.maps.event.addListener(map, "idle", () => {
+    searchDetailAddrFromCoords(map.getCenter(), displayCenterInfo);
+  });
 };
 
-export const searchAndAddMarker = (map: kakao.maps.Map, address: string) => {
-  const places = new kakao.maps.services.Places();
-  const clusterer = new kakao.maps.MarkerClusterer({
-    map: map,
-    averageCenter: true,
-    minLevel: 0,
-  });
-  places.keywordSearch(address, function (result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-      const place = result[0];
-      const coords = new kakao.maps.LatLng(
-        parseFloat(place.y),
-        parseFloat(place.x)
-      );
+export const AddMarker = (
+  _map: kakao.maps.Map | null,
+  lat: number,
+  lng: number,
+  clusterer: kakao.maps.MarkerClusterer
+) => {
+  const markerPosition = new kakao.maps.LatLng(lat, lng);
+  const marker = new kakao.maps.Marker({ position: markerPosition });
+  // marker.setMap(map);
+  // markers.push(marker);
+  clusterer.addMarker(marker);
+};
 
-      const marker = new kakao.maps.Marker({
-        position: coords,
-      });
-      // marker.setMap(map);
-      clusterer.addMarker(marker);
-      kakao.maps.event.addListener(marker, "click", function () {
-        const infowindow = new kakao.maps.InfoWindow({
-          content:
-            '<div style="padding:5px;font-size:12px;">' +
-            place.place_name +
-            "</div>",
-        });
-        infowindow.open(map, marker);
-      });
-    } else {
-      console.error("주소 검색 실패:", status);
-    }
-  });
+export const Removemarker = (
+  _map: kakao.maps.Map,
+  markers: kakao.maps.Marker[],
+  clusterer: kakao.maps.MarkerClusterer
+) => {
+  if (markers.length === 0 || clusterer === undefined) return;
+  markers.forEach((marker) => marker.setMap(null));
+  clusterer.clear();
 };

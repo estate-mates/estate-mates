@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,10 +7,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/v1": {
-        target: "http://localhost:8080/",
+        // target: "http://localhost:8080/",
         // target: "https://d76455ef-2182-4c67-9b84-dfe63f906387.mock.pstmn.io/",
+        target: "http://1.239.120.153:35001/",
         changeOrigin: true,
       },
     },
   },
-})
+});

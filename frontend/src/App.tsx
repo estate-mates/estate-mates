@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
   }
 });
 
-function App() {
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={true}/>

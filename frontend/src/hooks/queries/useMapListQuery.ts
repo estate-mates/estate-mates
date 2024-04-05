@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMapList } from "../../apis/map";
+import { getMapList, getApartmentList } from "../../apis/map";
 
 export const useMapListQuery = (params: { dong: string }) => {
   const mapListQuery = useQuery({
@@ -10,11 +10,22 @@ export const useMapListQuery = (params: { dong: string }) => {
   return { mapListQuery };
 };
 
-export const useTestQuery = () => {
-  const TestQuery = useQuery({
-    queryKey: ["test"],
-    queryFn: async () => await getMapList(),
+export const useApartmentListQuery = (params: {
+  southWestLatitude: number;
+  southWestLongitude: number;
+  northEastLatitude: number;
+  northEastLongitude: number;
+}) => {
+  const apartmentListQuery = useQuery({
+    queryKey: ["apartmentList", params],
+    queryFn: async () =>
+      await getApartmentList([
+        params.southWestLatitude,
+        params.southWestLongitude,
+        params.northEastLatitude,
+        params.northEastLongitude,
+      ]),
   });
 
-  return { TestQuery };
+  return { apartmentListQuery };
 };

@@ -1,6 +1,14 @@
 export const initializeMap = (
   map: kakao.maps.Map,
-  setCenterAddress: React.Dispatch<React.SetStateAction<string>>
+  setCenterAddress: React.Dispatch<React.SetStateAction<string>>,
+  setBounds: React.Dispatch<
+    React.SetStateAction<{
+      swLat: number;
+      swLng: number;
+      neLat: number;
+      neLng: number;
+    }>
+  >
 ) => {
   const geocoder = new kakao.maps.services.Geocoder();
   const searchDetailAddrFromCoords = (
@@ -17,6 +25,12 @@ export const initializeMap = (
       const infoDiv = document.getElementById("centerAddr") as HTMLElement;
       infoDiv.innerHTML = result[0].address.address_name;
       setCenterAddress(result[0].address.address_name.split(" ")[2]);
+      setBounds({
+        swLat: map.getBounds().getSouthWest().getLat(),
+        swLng: map.getBounds().getSouthWest().getLng(),
+        neLat: map.getBounds().getNorthEast().getLat(),
+        neLng: map.getBounds().getNorthEast().getLng(),
+      });
     }
   };
   searchDetailAddrFromCoords(map.getCenter(), displayCenterInfo);
@@ -33,8 +47,6 @@ export const AddMarker = (
 ) => {
   const markerPosition = new kakao.maps.LatLng(lat, lng);
   const marker = new kakao.maps.Marker({ position: markerPosition });
-  // marker.setMap(map);
-  // markers.push(marker);
   clusterer.addMarker(marker);
 };
 

@@ -1,3 +1,5 @@
+import { IApartment } from "../map/map";
+
 export interface IMapResponse {
   id: number | null;
   accYear: number | null;
@@ -21,4 +23,11 @@ export interface IMapResponse {
   houseType: string | null;
   reqGbn: string | null;
   rdealerLawdnm: string | null;
+}
+
+export interface IApartmentResponse {
+  apartmentId: number;
+  name: string;
+  latitude: number;
+  longitude: number;
 }

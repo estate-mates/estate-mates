@@ -20,4 +20,11 @@ interface ILocation {
     main_address_no: string;
     sub_address_no: string;
   };
-};
+}
+interface IApartmentDetail {
+  dealYear: number;
+  dealMonth: number;
+  dealDay: number;
+  area: number;
+  dealAmount: string;
+}

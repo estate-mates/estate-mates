@@ -1,6 +1,6 @@
 import { Global, css } from "@emotion/react";
 
-function GlobalStyles() {
+const GlobalStyles = () => {
   return (
     <Global
       styles={css`
@@ -10,8 +10,10 @@ function GlobalStyles() {
           word-break: keep-all;
           color: #2d2e38;
         }
-        
-        html, body, #root {
+
+        html,
+        body,
+        #root {
           height: 100%;
         }
 
@@ -21,6 +23,6 @@ function GlobalStyles() {
       `}
     />
   );
-}
+};
 
 export default GlobalStyles;

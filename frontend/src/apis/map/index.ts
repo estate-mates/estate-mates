@@ -1,12 +1,22 @@
-// import { IMapResponse } from "../../types/apis/apis";
+import { IApartmentResponse, IMapResponse } from "../../types/apis/apis";
 import { instance } from "../axios";
 
-export async function getMapList(name?: string) {
-  // return await instance().get<IMapResponse>(`deal`, { params: { dong: name } });
-  // return await instance().get<any>(`deal/${name}`, { params: { dong: name } });
-  return await instance().get<any>(`deal/${name}`);
-}
+export const getMapList = async (name?: string) => {
+  return await instance().get<IMapResponse>(`deal/${name}`);
+};
 
-export async function getTest() {
-  return await instance().get(`deal/test`);
-}
+export const getApartmentList = async ([
+  swLat,
+  swLng,
+  neLat,
+  neLng,
+]: number[]) => {
+  return await instance().get<IApartmentResponse[]>(`apartments`, {
+    params: {
+      southWestLatitude: swLat,
+      southWestLongitude: swLng,
+      northEastLatitude: neLat,
+      northEastLongitude: neLng,
+    },
+  });
+};

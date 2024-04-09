@@ -1,14 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMapList, getApartmentList } from "../../apis/map";
-
-export const useMapListQuery = (params: { dong: string }) => {
-  const mapListQuery = useQuery({
-    queryKey: ["mapList", params],
-    queryFn: async () => await getMapList(params.dong),
-  });
-
-  return { mapListQuery };
-};
+import {
+  getApartmentList,
+  getApartmentDetail,
+} from "../../apis/map";
 
 export const useApartmentListQuery = (params: {
   southWestLatitude: number;
@@ -28,4 +22,13 @@ export const useApartmentListQuery = (params: {
   });
 
   return { apartmentListQuery };
+};
+
+export const useApartmentDetailQuery = (params: { apartmentId: number }) => {
+  const apartmentDetailQuery = useQuery({
+    queryKey: ["apartmentDetail", params],
+    queryFn: async () => await getApartmentDetail(params.apartmentId),
+  });
+
+  return { apartmentDetailQuery };
 };

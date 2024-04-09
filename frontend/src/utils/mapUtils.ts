@@ -1,3 +1,5 @@
+import { IApartmentResponse } from "../types/apis/apis";
+
 export const initializeMap = (
   map: kakao.maps.Map,
   setCenterAddress: React.Dispatch<React.SetStateAction<string>>,
@@ -41,13 +43,16 @@ export const initializeMap = (
 
 export const AddMarker = (
   _map: kakao.maps.Map | null,
-  lat: number,
-  lng: number,
-  clusterer: kakao.maps.MarkerClusterer
+  item: IApartmentResponse,
+  clusterer: kakao.maps.MarkerClusterer,
+  setApartmentId: React.Dispatch<React.SetStateAction<number>>,
 ) => {
-  const markerPosition = new kakao.maps.LatLng(lat, lng);
+  const markerPosition = new kakao.maps.LatLng(item.latitude, item.longitude);
   const marker = new kakao.maps.Marker({ position: markerPosition });
   clusterer.addMarker(marker);
+  kakao.maps.event.addListener(marker, "click", () => {
+    setApartmentId(item.apartmentId);
+  });
 };
 
 export const Removemarker = (

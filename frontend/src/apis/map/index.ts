@@ -1,9 +1,5 @@
-import { IApartmentResponse, IMapResponse } from "../../types/apis/apis";
+import { IApartmentResponse } from "../../types/apis/apis";
 import { instance } from "../axios";
-
-export const getMapList = async (name?: string) => {
-  return await instance().get<IMapResponse>(`deal/${name}`);
-};
 
 export const getApartmentList = async ([
   swLat,
@@ -19,4 +15,8 @@ export const getApartmentList = async ([
       northEastLongitude: neLng,
     },
   });
+};
+
+export const getApartmentDetail = async (name?: number) => {
+  return await instance().get<any>(`deal/${name}`);
 };
